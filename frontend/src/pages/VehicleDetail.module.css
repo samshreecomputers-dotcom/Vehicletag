@@ -1,0 +1,159 @@
+.page { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+
+.topbar { margin-bottom: 24px; }
+.back { color: var(--text-muted); font-size: 0.9rem; text-decoration: none; }
+.back:hover { color: var(--text); }
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.title { font-size: 2rem; font-weight: 800; margin-bottom: 4px; }
+.sub { color: var(--text-muted); font-size: 0.9rem; }
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  margin-bottom: 28px;
+  width: fit-content;
+}
+
+.tab {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab:hover { color: var(--text); }
+.tabActive { background: var(--surface2); color: var(--text) !important; }
+
+.content { }
+
+/* QR Section */
+.qrSection {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.qrCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  width: 220px;
+}
+
+.qrImage { width: 180px; height: 180px; display: block; }
+.qrLabel { font-size: 0.75rem; color: var(--text-muted); margin-top: 10px; }
+
+.qrInfo h2 { font-size: 1.5rem; margin-bottom: 12px; }
+
+.qrDesc { color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; font-size: 0.95rem; }
+
+.qrUrl { margin-bottom: 20px; }
+.urlBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-top: 6px;
+}
+.urlBox span { flex: 1; font-size: 0.8rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.qrFeatures { margin-bottom: 20px; }
+.qrFeature { font-size: 0.9rem; color: var(--text-muted); padding: 4px 0; }
+
+/* Emergency */
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.sectionHeader h2 { font-size: 1.3rem; margin-bottom: 4px; }
+
+.contactForm { margin-bottom: 20px; }
+
+.formRow { display: flex; gap: 12px; }
+@media (max-width: 600px) { .formRow { flex-direction: column; } }
+
+.contactsList { display: flex; flex-direction: column; gap: 12px; }
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.contactAvatar {
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  color: #0a0a0f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-family: var(--font-display);
+  flex-shrink: 0;
+}
+
+.contactInfo { flex: 1; }
+.contactName { font-weight: 600; }
+.contactMeta { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+
+/* Logs */
+.logsList { display: flex; flex-direction: column; gap: 10px; }
+
+.logItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+
+.logIcon { font-size: 1.3rem; }
+.logInfo { flex: 1; }
+.logType { margin-bottom: 4px; }
+.logMeta { font-size: 0.8rem; color: var(--text-muted); }
+.logTime { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+
+.emptyState { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+
+@media (max-width: 680px) {
+  .qrSection { grid-template-columns: 1fr; }
+  .qrCard { width: 100%; }
+  .qrImage { width: 200px; height: 200px; margin: 0 auto; }
+  .sectionHeader { flex-direction: column; }
+  .tabs { width: 100%; }
+  .tab { flex: 1; text-align: center; font-size: 0.8rem; padding: 8px 10px; }
+}

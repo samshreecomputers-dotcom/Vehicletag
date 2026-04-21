@@ -1,0 +1,150 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245,166,35,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow);
+}
+
+.appName {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+
+.vehicleInfo {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.contactLabel { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; }
+.plateNumber {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 4px;
+}
+.ownerName { font-size: 0.85rem; color: var(--text-muted); }
+
+.notice {
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.mainActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.actionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 12px;
+  border-radius: var(--radius-sm);
+  border: 2px dashed;
+  cursor: pointer;
+  background: none;
+  transition: all 0.2s;
+}
+.actionBtn:hover { transform: translateY(-2px); }
+
+.callBtn { border-color: var(--accent); color: var(--accent); }
+.callBtn:hover { background: rgba(245,166,35,0.1); }
+
+.waBtn { border-color: #25D366; color: #25D366; }
+.waBtn:hover { background: rgba(37,211,102,0.1); }
+
+.actionIcon { font-size: 1.8rem; }
+.actionLabel { font-weight: 700; font-size: 0.9rem; }
+.actionSub { font-size: 0.72rem; opacity: 0.7; }
+
+.emergency {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+.emergency p { font-size: 0.85rem; color: var(--text-muted); }
+
+.footer { text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 16px; }
+
+.center { text-align: center; padding: 20px 0; }
+.center h2 { margin: 12px 0 8px; font-size: 1.3rem; }
+.center p { color: var(--text-muted); font-size: 0.9rem; }
+
+.errorIcon, .successIcon { font-size: 3rem; }
+
+.contactForm h3 { font-size: 1.1rem; margin-bottom: 4px; }
+
+.waFullBtn {
+  flex: 1;
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+.waFullBtn:hover { background: #20b957; }
+
+.callFullBtn {
+  flex: 1;
+  background: var(--accent);
+  color: #0a0a0f;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+.callFullBtn:hover { background: #f5b84a; }
