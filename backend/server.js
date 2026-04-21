@@ -339,3 +339,8 @@ app.get('/api/dashboard/stats', authMiddleware, (req, res) => {
   res.json({ vehicleCount, totalContacts, totalEmergencies });
 });
 
+
+initDb().then(() => {
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => console.log(`🚀 VehicleTag server running on port ${PORT}`));
+});
