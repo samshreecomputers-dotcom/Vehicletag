@@ -172,3 +172,4 @@ TWILIO_PHONE_NUMBER=+1234567890
 - **Backend**: Node.js, Express, SQLite (better-sqlite3), JWT, QRCode
 - **Frontend**: React 18, React Router v6, Vite, Axios, jsPDF
 - **DB**: SQLite (zero config, upgrade to PostgreSQL for scale)
+# Vehicletag
