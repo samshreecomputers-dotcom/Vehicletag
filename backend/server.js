@@ -339,17 +339,3 @@ app.get('/api/dashboard/stats', authMiddleware, (req, res) => {
   res.json({ vehicleCount, totalContacts, totalEmergencies });
 });
 
-// ─── PRODUCTION FRONTEND ──────────────────────────────────────────────────────
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-  });
-}
-
-// ─── START ────────────────────────────────────────────────────────────────────
-
-initDb().then(() => {
-  app.listen(PORT, () => console.log(`🚀 VehicleTag server running on port ${PORT}`));
-});
