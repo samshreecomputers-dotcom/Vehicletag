@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL: import.meta.env.VITE_API_URL + '/api' });
+const BASE = import.meta.env.VITE_API_URL || 'https://vehicletag-production.up.railway.app';
+const api = axios.create({ baseURL: BASE + '/api' });
 
 api.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
