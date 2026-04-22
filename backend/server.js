@@ -108,7 +108,7 @@ function dbRun(sql, params = []) {
 }
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000' }));
+app.use(cors({ origin: process.env.FRONTEND_URL || ['http://localhost:3000', 'https://vehicletag.shreecomp.in', 'https://vehicletag.vercel.app'] }));
 app.use(express.json());
 
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
