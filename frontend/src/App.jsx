@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import VehicleDetail from './pages/VehicleDetail';
 import ContactPage from './pages/ContactPage';
+import Admin from './pages/Admin';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();

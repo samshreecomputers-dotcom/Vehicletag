@@ -311,3 +311,51 @@ initDb().then(() => {
   const PORT = process.env.PORT || 8080;
   app.listen(PORT, () => console.log(`🚀 VehicleTag server running on port ${PORT}`));
 });
+
+// ─── ADMIN ROUTES ─────────────────────────────────────────────────────────────
+const adminMiddleware = (req, res, next) => {
+  if (req.user.id !== '01') return res.status(403).json({ error: 'Forbidden' });
+  next();
+};
+
+app.get('/api/admin/stats', authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    const users = await dbGet('SELECT COUNT(*) as count FROM users', []);
+    const vehicles = await dbGet('SELECT COUNT(*) as count FROM vehicles', []);
+    const logs = await dbGet('SELECT COUNT(*) as count FROM contact_logs', []);
+    res.json({ users: users.count, vehicles: vehicles.count, logs: logs.count });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/admin/users', authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    const users = await dbAll('SELECT id, name, email, phone, created_at FROM users ORDER BY created_at DESC', []);
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/admin/vehicles', authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    const vehicles = await dbAll(`
+      SELECT v.*, u.name as owner_name, u.email as owner_email
+      FROM vehicles v JOIN users u ON v.user_id = u.id
+      ORDER BY v.created_at DESC
+    `, []);
+    res.json(vehicles);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete('/api/admin/users/:id', authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    await dbRun('DELETE FROM users WHERE id = $1', [req.params.id]);
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
