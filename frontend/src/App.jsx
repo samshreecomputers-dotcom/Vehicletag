@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard';
 import VehicleDetail from './pages/VehicleDetail';
 import ContactPage from './pages/ContactPage';
 import Admin from './pages/Admin';
+import TwoFactorSetup from './pages/TwoFactorSetup';
+import TwoFactorValidate from './pages/TwoFactorValidate';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();

@@ -359,3 +359,53 @@ app.delete('/api/admin/users/:id', authMiddleware, adminMiddleware, async (req, 
     res.status(500).json({ error: err.message });
   }
 });
+
+// ─── 2FA ROUTES ───────────────────────────────────────────────────────────────
+const speakeasy = require('speakeasy');
+const QRCodeLib = require('qrcode');
+
+app.post('/api/auth/2fa/setup', authMiddleware, async (req, res) => {
+  try {
+    const secret = speakeasy.generateSecret({ name: `VehicleTag (${req.user.email})` });
+    await dbRun('UPDATE users SET totp_secret=$1 WHERE id=$2', [secret.base32, req.user.id]);
+    const qrCode = await QRCodeLib.toDataURL(secret.otpauth_url);
+    res.json({ secret: secret.base32, qrCode });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/auth/2fa/verify', authMiddleware, async (req, res) => {
+  try {
+    const { token } = req.body;
+    const user = await dbGet('SELECT totp_secret FROM users WHERE id=$1', [req.user.id]);
+    const valid = speakeasy.totp.verify({ secret: user.totp_secret, encoding: 'base32', token, window: 1 });
+    if (!valid) return res.status(400).json({ error: 'Invalid code' });
+    await dbRun('UPDATE users SET totp_enabled=TRUE WHERE id=$1', [req.user.id]);
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/auth/2fa/validate', authMiddleware, async (req, res) => {
+  try {
+    const { token } = req.body;
+    const user = await dbGet('SELECT totp_secret, totp_enabled FROM users WHERE id=$1', [req.user.id]);
+    if (!user.totp_enabled) return res.json({ success: true });
+    const valid = speakeasy.totp.verify({ secret: user.totp_secret, encoding: 'base32', token, window: 1 });
+    if (!valid) return res.status(400).json({ error: 'Invalid code' });
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/auth/2fa/status', authMiddleware, async (req, res) => {
+  try {
+    const user = await dbGet('SELECT totp_enabled FROM users WHERE id=$1', [req.user.id]);
+    res.json({ enabled: user.totp_enabled });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
