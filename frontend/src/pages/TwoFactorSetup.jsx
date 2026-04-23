@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../api';
 
 const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  
   * { box-sizing: border-box; margin: 0; padding: 0; }
   .tfa-root { min-height: 100vh; background: #030712; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; color: #f9fafb; }
   .grid-bg { position: fixed; inset: 0; background-image: linear-gradient(rgba(245,158,11,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(245,158,11,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
