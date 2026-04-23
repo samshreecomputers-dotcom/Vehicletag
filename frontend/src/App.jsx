@@ -14,8 +14,8 @@ import TwoFactorValidate from './pages/TwoFactorValidate';
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-      <div className="spinner" style={{ width: 40, height: 40, color: 'var(--accent)' }} />
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: '#030712' }}>
+      <div style={{ color: '#f59e0b', fontSize: '24px' }}>Loading...</div>
     </div>
   );
   return user ? children : <Navigate to="/login" />;
