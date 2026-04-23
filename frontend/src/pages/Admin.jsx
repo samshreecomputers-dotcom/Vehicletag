@@ -174,7 +174,7 @@ export default function Admin() {
       setUsers(u.data);
       setVehicles(v.data);
       setLoading(false);
-    }).catch(() => navigate('/dashboard'));
+    }).catch((e) => console.error('Admin error:', e));
   }, []);
 
   const deleteUser = async (id) => {
