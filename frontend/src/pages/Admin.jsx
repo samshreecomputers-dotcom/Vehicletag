@@ -9,7 +9,9 @@ export default function Admin() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    api.get('/admin/stats').then(r => setStats(r.data)).catch(e => setError(e.message));
+    api.get('/admin/stats')
+      .then(r => setStats(r.data))
+      .catch(e => setError('Access denied: ' + (e.response?.data?.error || e.message)));
     api.get('/admin/users').then(r => setUsers(r.data)).catch(() => {});
     api.get('/admin/vehicles').then(r => setVehicles(r.data)).catch(() => {});
   }, []);
